@@ -1,38 +1,38 @@
 public class Node {
-    private String nama, nama_barang, kerusakan, status;
+    private String namaPelanggan, namaBarang, kerusakan, status;
     private double biaya;
     private Node next;
 
-    public Node(String nama, String nama_barang, String kerusakan, double biaya) {
-        this.nama = nama;
-        this.nama_barang = nama_barang;
-        this.kerusakan = kerusakan;
+    public Node(String namaPelanggan, String namaBarang, String kerusakan, double biaya) {
+        setNamaPelanggan(namaPelanggan);
+        setNamaBarang(namaBarang);
+        setKerusakan(kerusakan);
         this.status = "Pending";
-        this.biaya = biaya;
+        setBiaya(biaya);
     }
 
-    public Node(String nama, String nama_barang, String kerusakan, double biaya, String status) {
-        this.nama = nama;
-        this.nama_barang = nama_barang;
-        this.kerusakan = kerusakan;
-        this.status = status;
-        this.biaya = biaya;
+    public Node(String namaPelanggan , String namaBarang, String kerusakan, double biaya, String status) {
+        setNamaPelanggan(namaPelanggan);
+        setNamaBarang(namaBarang);
+        setKerusakan(kerusakan);
+        setStatus(status);
+        setBiaya(biaya);
     }
 
     public String getNama() {
-        return nama;
+        return namaPelanggan;
     }
 
-    public void setNama(String nama) {
-        this.nama = nama;
+    public void setNamaPelanggan(String namaPelanggan) {
+        this.namaPelanggan = namaPelanggan;
     }
 
-    public String getNama_barang() {
-        return nama_barang;
+    public String getNamaBarang() {
+        return namaBarang;
     }
 
-    public void setNama_barang(String nama_barang) {
-        this.nama_barang = nama_barang;
+    public void setNamaBarang(String namaBarang) {
+        this.namaBarang = namaBarang;
     }
 
     public String getKerusakan() {
