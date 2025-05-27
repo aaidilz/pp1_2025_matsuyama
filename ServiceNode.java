@@ -1,9 +1,9 @@
-public class Node {
+public class ServiceNode {
     private String namaPelanggan, namaBarang, kerusakan, status;
     private double biaya;
-    private Node next;
+    private ServiceNode next;
 
-    public Node(String namaPelanggan, String namaBarang, String kerusakan, double biaya) {
+    public ServiceNode(String namaPelanggan, String namaBarang, String kerusakan, double biaya) {
         setNamaPelanggan(namaPelanggan);
         setNamaBarang(namaBarang);
         setKerusakan(kerusakan);
@@ -11,7 +11,7 @@ public class Node {
         setBiaya(biaya);
     }
 
-    public Node(String namaPelanggan , String namaBarang, String kerusakan, double biaya, String status) {
+    public ServiceNode(String namaPelanggan , String namaBarang, String kerusakan, double biaya, String status) {
         setNamaPelanggan(namaPelanggan);
         setNamaBarang(namaBarang);
         setKerusakan(kerusakan);
@@ -59,11 +59,11 @@ public class Node {
         this.biaya = biaya;
     }
 
-    public Node getNext() {
+    public ServiceNode getNext() {
         return next;
     }
 
-    public void setNext(Node next) {
+    public void setNext(ServiceNode next) {
         this.next = next;
     }
 
