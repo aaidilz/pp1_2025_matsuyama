@@ -5,9 +5,9 @@ import java.sql.Statement;
 
 public class Connect {
     public static void main(String[] args) {
-    final String DB_URL = "jdbc:mysql://localhost:3306/pp1";
-    final String username = "root";
-    final String password = "";
+    final String DB_URL = "jdbc:mysql://pongo.kencang.com/academyc_tubes_pp";
+    final String username = "academyc_root_pp";
+    final String password = "Langkahpemula1#";
 
     Connection conn= null;
     Statement stmt = null;
@@ -17,21 +17,21 @@ public class Connect {
             conn.setAutoCommit(false); // Disable auto-commit mode
             System.out.println("Koneksi Berhasil");
 
-            stmt = conn.createStatement();
-            String sql ="INSERT INTO users (id_user, nama, pass)"
-                        +"VALUES ('00001', 'admin', 'admin')";
-             stmt.executeUpdate(sql);
-             conn.commit(); // Commit the transaction
-            System.out.println("Data berhasil ditambahkan ke tabel users");
+            // stmt = conn.createStatement();
+            // String sql ="INSERT INTO users (id_user, nama, pass)"
+            //             +"VALUES ('00001', 'admin', 'admin')";
+            //  stmt.executeUpdate(sql);
+            //  conn.commit(); // Commit the transaction
+            // System.out.println("Data berhasil ditambahkan ke tabel users");
         } catch (Exception e) {
-            if (conn != null) {
-                try {
-                    conn.rollback(); // Rollback the transaction on error
-                    System.out.println("Transaksi dibatalkan");
-                } catch (Exception rollbackEx) {
-                    rollbackEx.printStackTrace();
-                }
-            }
+            // if (conn != null) {
+            //     try {
+            //         conn.rollback(); // Rollback the transaction on error
+            //         System.out.println("Transaksi dibatalkan");
+            //     } catch (Exception rollbackEx) {
+            //         rollbackEx.printStackTrace();
+            //     }
+            // }
             e.printStackTrace();
         }
 
