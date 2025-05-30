@@ -1,7 +1,10 @@
-public class ServiceMain {
+public class ServiceApp {
     
     public static void main(String[] args) {
-        LoginService loginService = new LoginService();
+        LoginMain LoginMain = new LoginMain();
+        ServiceMain serviceLinkedList = new ServiceMain();
 
-        loginService.login();
+        LoginMain.login();
+        serviceLinkedList.Banner();
+    }
 }

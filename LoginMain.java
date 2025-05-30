@@ -3,7 +3,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.Scanner;
 
-public class LoginService {
+public class LoginMain {
 
     public void login() {
         Scanner scanner = new Scanner(System.in);
@@ -21,13 +21,11 @@ public class LoginService {
         } else {
             System.out.println("Login gagal. Username atau password salah.");
         }
-
-        scanner.close();
     }
 
     public static boolean loginInput(String usernameInput, String passwordInput) {
         try {
-            Connection conn = Connect.getConnection();
+            Connection conn = Connecter.getConnection();
 
             if (conn == null) {
                 System.out.println("Tidak dapat terhubung ke database.");
