@@ -1,70 +1,59 @@
+import java.time.LocalDate;
+
 public class ServiceNode {
-    private String namaPelanggan, namaBarang, kerusakan, status;
-    private double biaya;
-    private ServiceNode next;
+    public int id;
+    public String customerName;
+    public String deviceType;
+    public String problemDescription;
+    public LocalDate serviceDate;
+    public double cost;
+    public String status; // 'pending', 'on_going', 'completed'
+    public int userId;
+    public ServiceNode next;
 
-    public ServiceNode(String namaPelanggan, String namaBarang, String kerusakan, double biaya) {
-        setNamaPelanggan(namaPelanggan);
-        setNamaBarang(namaBarang);
-        setKerusakan(kerusakan);
-        this.status = "Pending";
-        setBiaya(biaya);
+    // Constructor for new service (without ID)
+    public ServiceNode(String customerName, String deviceType, String problemDescription, double cost) {
+        this.customerName = customerName;
+        this.deviceType = deviceType;
+        this.problemDescription = problemDescription;
+        this.cost = cost;
+        this.status = "pending"; // Default status
+        this.serviceDate = LocalDate.now(); // Set current date
+        this.userId = 1; // Default user ID, bisa disesuaikan
     }
 
-    public ServiceNode(String namaPelanggan , String namaBarang, String kerusakan, double biaya, String status) {
-        setNamaPelanggan(namaPelanggan);
-        setNamaBarang(namaBarang);
-        setKerusakan(kerusakan);
-        setStatus(status);
-        setBiaya(biaya);
-    }
-
-    public String getNama() {
-        return namaPelanggan;
-    }
-
-    public void setNamaPelanggan(String namaPelanggan) {
-        this.namaPelanggan = namaPelanggan;
-    }
-
-    public String getNamaBarang() {
-        return namaBarang;
-    }
-
-    public void setNamaBarang(String namaBarang) {
-        this.namaBarang = namaBarang;
-    }
-
-    public String getKerusakan() {
-        return kerusakan;
-    }
-
-    public void setKerusakan(String kerusakan) {
-        this.kerusakan = kerusakan;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
+    // Constructor with all parameters (for loading from database)
+    public ServiceNode(int id, String customerName, String deviceType, String problemDescription,
+            LocalDate serviceDate, double cost, String status, int userId) {
+        this.id = id;
+        this.customerName = customerName;
+        this.deviceType = deviceType;
+        this.problemDescription = problemDescription;
+        this.serviceDate = serviceDate;
+        this.cost = cost;
         this.status = status;
+        this.userId = userId;
     }
 
-    public double getBiaya() {
-        return biaya;
+    // Constructor with status parameter (for updates)
+    public ServiceNode(String customerName, String deviceType, String problemDescription,
+            double cost, String status) {
+        this.customerName = customerName;
+        this.deviceType = deviceType;
+        this.problemDescription = problemDescription;
+        this.cost = cost;
+        this.status = status;
+        this.serviceDate = LocalDate.now();
+        this.userId = 1; // Default user ID
     }
 
-    public void setBiaya(double biaya) {
-        this.biaya = biaya;
+    public String toString() {
+        return "ID: " + id + "\n" +
+                "Nama: " + customerName + "\n" +
+                "Perangkat: " + deviceType + "\n" +
+                "Masalah: " + problemDescription + "\n" +
+                "Tanggal: " + serviceDate + "\n" +
+                "Biaya: Rp" + cost + "\n" +
+                "Status: " + status + "\n";
     }
-
-    public ServiceNode getNext() {
-        return next;
-    }
-
-    public void setNext(ServiceNode next) {
-        this.next = next;
-    }
-
 }
