@@ -79,7 +79,7 @@ public class Main {
                     System.out.println("Fitur ubah belum diimplementasi.");
                     break;
                 case 6:
-                    System.out.println("Fitur hapus belum diimplementasi.");
+                    serviceData.hapusData(scanner);
                     break;
                 case 7:
                     serviceData.tampilkanDataSementara();

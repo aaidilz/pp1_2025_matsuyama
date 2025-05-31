@@ -114,4 +114,74 @@ public class ServiceData {
             current = current.next;
         }
     }
+
+    // Method untuk menghapus data berdasarkan pilihan user
+    public void hapusData(Scanner scanner) {
+        if (head == null) {
+            System.out.println("Tidak ada data untuk dihapus.");
+            return;
+        }
+
+        System.out.println("\n======= Hapus data Servis =======");
+        System.out.println("1. Hapus berdasarkan ID");
+        System.out.println("2. Hapus semua");
+        System.out.print("Pilih (1/2): ");
+        String pilihan = scanner.nextLine();
+
+        if (pilihan.equals("1")) {
+            hapusAtIndex(scanner);
+        } else if (pilihan.equals("2")) {
+            head = null;
+            System.out.println("Semua data berhasil dihapus.");
+        } else {
+            System.out.println("Pilihan tidak valid.");
+        }
+    }
+
+    // Method untuk menghapus data berdasarkan index
+    public void hapusAtIndex(Scanner scanner) {
+        int total = size();
+        if (total == 0) {
+            System.out.println("Tidak ada data.");
+            return;
+        }
+
+        tampilkanDataSementara();
+        System.out.print("Masukkan ID data yang ingin dihapus (1 - " + total + "): ");
+
+        try {
+            int id = Integer.parseInt(scanner.nextLine());
+            if (id < 1 || id > total) {
+                System.out.println("ID tidak valid.");
+                return;
+            }
+
+            if (id == 1) {
+                ServiceNode deleted = head;
+                head = head.next;
+                System.out.println("Data '" + deleted.customerName + "' berhasil dihapus.");
+            } else {
+                ServiceNode current = head;
+                for (int i = 0; i < id - 2; i++) {
+                    current = current.next;
+                }
+                ServiceNode deleted = current.next;
+                current.next = current.next.next;
+                System.out.println("Data '" + deleted.customerName + "' berhasil dihapus.");
+            }
+        } catch (NumberFormatException e) {
+            System.out.println("Input harus berupa angka.");
+        }
+    }
+
+    // Method untuk menghitung ukuran linked list
+    public int size() {
+        int count = 0;
+        ServiceNode current = head;
+        while (current != null) {
+            count++;
+            current = current.next;
+        }
+        return count;
+    }    
 }
