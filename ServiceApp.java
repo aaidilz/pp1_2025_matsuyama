@@ -1,10 +1,10 @@
 import java.util.Scanner;
 
-public class Main {
+public class ServiceApp {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        Login login = new Login();
-        ServiceData serviceData = new ServiceData();
+        LoginMain login = new LoginMain();
+        ServiceMain serviceData = new ServiceMain();
 
         boolean isLoggedIn = false;
 

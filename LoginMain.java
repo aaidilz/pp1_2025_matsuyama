@@ -2,7 +2,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-public class Login {
+public class LoginMain {
 
     public boolean authenticate(String username, String password) {
         String sql = "SELECT * FROM users WHERE username = ? AND password = ?";

@@ -4,7 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Scanner;
 
-public class ServiceData {
+public class ServiceMain {
     private ServiceNode head;
 
     // Tambah data ke linked list (input dari Scanner)
