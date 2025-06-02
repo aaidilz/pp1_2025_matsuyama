@@ -1,15 +1,15 @@
 import java.time.LocalDate;
 
 public class ServiceNode {
-    public int id;
-    public String customerName;
-    public String deviceType;
-    public String problemDescription;
-    public LocalDate serviceDate;
-    public double cost;
-    public String status; // 'pending', 'on_going', 'completed'
-    public int userId;
-    public ServiceNode next;
+    private int id;
+    private String customerName;
+    private String deviceType;
+    private String problemDescription;
+    private LocalDate serviceDate;
+    private double cost;
+    private String status; // 'pending', 'on_going', 'completed'
+    private int userId;
+    private ServiceNode next;
 
     // Constructor for new service (without ID)
     public ServiceNode(String customerName, String deviceType, String problemDescription, double cost) {
@@ -45,6 +45,78 @@ public class ServiceNode {
         this.status = status;
         this.serviceDate = LocalDate.now();
         this.userId = 1; // Default user ID
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getCustomerName() {
+        return customerName;
+    }
+
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
+    }
+
+    public String getDeviceType() {
+        return deviceType;
+    }
+
+    public void setDeviceType(String deviceType) {
+        this.deviceType = deviceType;
+    }
+
+    public String getProblemDescription() {
+        return problemDescription;
+    }
+
+    public void setProblemDescription(String problemDescription) {
+        this.problemDescription = problemDescription;
+    }
+
+    public LocalDate getServiceDate() {
+        return serviceDate;
+    }
+
+    public void setServiceDate(LocalDate serviceDate) {
+        this.serviceDate = serviceDate;
+    }
+
+    public double getCost() {
+        return cost;
+    }
+
+    public void setCost(double cost) {
+        this.cost = cost;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    public ServiceNode getNext() {
+        return next;
+    }
+
+    public void setNext(ServiceNode next) {
+        this.next = next;
     }
 
     public String toString() {

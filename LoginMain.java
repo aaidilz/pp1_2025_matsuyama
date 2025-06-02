@@ -4,26 +4,41 @@ import java.sql.ResultSet;
 import java.util.Scanner;
 
 public class LoginMain {
+    private int loggedInUserId = -1;
 
-    public void login() {
+    public boolean login() {
         Scanner scanner = new Scanner(System.in);
+        boolean loginSuccess = false;
+        int attempts = 0;
+        final int MAX_ATTEMPTS = 3;
 
-        System.out.print("Masukkan username: ");
-        String username = scanner.nextLine();
+        while (attempts < MAX_ATTEMPTS && !loginSuccess) {
+            System.out.println("\n===== LOGIN SISTEM =====");
+            System.out.print("Masukkan username: ");
+            String username = scanner.nextLine();
 
-        System.out.print("Masukkan password: ");
-        String password = scanner.nextLine();
+            System.out.print("Masukkan password: ");
+            String password = scanner.nextLine();
 
-        boolean isLoggedIn = loginInput(username, password);
+            loginSuccess = loginInput(username, password);
 
-        if (isLoggedIn) {
-            System.out.println("Login berhasil!");
-        } else {
-            System.out.println("Login gagal. Username atau password salah.");
+            if (loginSuccess) {
+                System.out.println("Login berhasil!");
+            } else {
+                attempts++;
+                System.out.println("Login gagal. Username atau password salah.");
+                System.out.println("Percobaan ke-" + attempts + " dari " + MAX_ATTEMPTS);
+
+                if (attempts < MAX_ATTEMPTS) {
+                    System.out.println("Silakan coba lagi.");
+                }
+            }
         }
+
+        return loginSuccess;
     }
 
-    public static boolean loginInput(String usernameInput, String passwordInput) {
+    public boolean loginInput(String usernameInput, String passwordInput) {
         try {
             Connection conn = Connecter.getConnection();
 
@@ -32,7 +47,7 @@ public class LoginMain {
                 return false;
             }
 
-            String sql = "SELECT * FROM users WHERE username = ? AND password = ?";
+            String sql = "SELECT id FROM users WHERE username = ? AND password = ?";
             PreparedStatement stmt = conn.prepareStatement(sql);
             stmt.setString(1, usernameInput);
             stmt.setString(2, passwordInput);
@@ -40,6 +55,10 @@ public class LoginMain {
             ResultSet rs = stmt.executeQuery();
 
             boolean success = rs.next(); // true jika user ditemukan
+
+            if (success) {
+                loggedInUserId = rs.getInt("id");
+            }
 
             rs.close();
             stmt.close();
@@ -50,5 +69,9 @@ public class LoginMain {
             e.printStackTrace();
             return false;
         }
+    }
+
+    public int getLoggedInUserId() {
+        return loggedInUserId;
     }
 }

@@ -1,69 +1,95 @@
+import java.util.Scanner;
+
 public class ServiceMain {
-    public ServiceNode head;
+    private ServiceLinkedList serviceList;
+    private Scanner scanner;
+    private int loggedInUserId = 1; // Default user ID, bisa diubah setelah login berhasil
 
     public ServiceMain() {
-        this.head = null;
+        this.serviceList = new ServiceLinkedList();
+        this.scanner = new Scanner(System.in);
+    }
+
+    public void setLoggedInUserId(int userId) {
+        this.loggedInUserId = userId;
+        // Juga set user ID ke ServiceLinkedList
+        serviceList.setLoggedInUserId(userId);
     }
 
     public void Banner() {
-        System.out.println("PENCATATAN JASA SERVIS ELEKTRONIK");
-        System.out.println("=================================");
-    
-        System.out.println("1. Cari data Servis");
-        System.out.println("2. Tampilkan Semua data Servis");
-        System.out.println("3. Filter data Servis");
-        System.out.println("4. Tambah data Servis");
-        System.out.println("5. Ubah data Servis");
-        System.out.println("6. Hapus data Servis");
-        System.out.println("7. Keluar");
+        boolean running = true;
 
-        System.out.println("================================= \n");
+        while (running) {
+            System.out.println("\nPENCATATAN JASA SERVIS ELEKTRONIK");
+            System.out.println("=================================");
+            System.out.println("1. Cari data Servis");
+            System.out.println("2. Tampilkan Semua data Servis");
+            System.out.println("3. Filter data Servis");
+            System.out.println("4. Tambah data Servis");
+            System.out.println("5. Ubah data Servis");
+            System.out.println("6. Hapus data Servis");
+            System.out.println("7. Simpan data ke Database");
+            System.out.println("8. Keluar");
+            System.out.println("================================= \n");
 
-        // input pilihan dari pengguna
-        // di sini bisa ditambahkan metode untuk menangani input untuk setiap opsi
-        java.util.Scanner scanner = new java.util.Scanner(System.in);
-        int choice = -1;
+            System.out.print("Silakan pilih opsi (1-8): ");
+            int choice = -1;
 
-        try {
-            System.out.print("Silakan pilih opsi (1-7): ");
-            if (scanner.hasNextInt()) {
-                choice = scanner.nextInt();
-            } else {
-                System.out.println("Input tidak valid. Harus angka 1-7.");
-                scanner.next(); // Buang input yang salah
-                return;
+            try {
+                if (scanner.hasNextInt()) {
+                    choice = scanner.nextInt();
+                    scanner.nextLine(); // Membersihkan buffer
+                } else {
+                    System.out.println("Input tidak valid. Harus angka 1-8.");
+                    scanner.nextLine(); // Membersihkan buffer
+                    continue;
+                }
+
+                switch (choice) {
+                    case 1:
+                        System.out.println("Fitur Cari data Servis belum diimplementasikan.");
+                        break;
+                    case 2:
+                        // Menampilkan semua data servis
+                        serviceList.tampilkanDataSementara();
+                        break;
+                    case 3:
+                        System.out.println("Fitur Filter data Servis belum diimplementasikan.");
+                        break;
+                    case 4:
+                        // Tambah data servis
+                        serviceList.tambahData(scanner);
+                        break;
+                    case 5:
+                        System.out.println("Fitur Ubah data Servis belum diimplementasikan.");
+                        break;
+                    case 6:
+                        // Hapus data servis
+                        serviceList.hapusData(scanner);
+                        break;
+                    case 7:
+                        // Simpan data ke database
+                        serviceList.simpanKeDatabase();
+                        break;
+                    case 8:
+                        System.out.println("Terima kasih telah menggunakan layanan kami. Sampai jumpa!");
+                        running = false;
+                        break;
+                    default:
+                        System.out.println("Pilihan tidak valid. Silakan pilih antara 1-8.");
+                        break;
+                }
+            } catch (Exception e) {
+                System.out.println("Terjadi kesalahan input: " + e.getMessage());
+                scanner.nextLine(); // Membersihkan buffer
             }
-
-            switch (choice) {
-                case 1:
-                    System.out.println("Fitur Cari data Servis belum diimplementasikan.");
-                    break;
-                case 2:
-                    System.out.println("Fitur Tampilkan Semua data Servis belum diimplementasikan.");
-                    break;
-                case 3:
-                    System.out.println("Fitur Filter data Servis belum diimplementasikan.");
-                    break;
-                case 4:
-                    System.out.println("Fitur Tambah data Servis belum diimplementasikan.");
-                    break;
-                case 5:
-                    System.out.println("Fitur Ubah data Servis belum diimplementasikan.");
-                    break;
-                case 6:
-                    System.out.println("Fitur Hapus data Servis belum diimplementasikan.");
-                    break;
-                case 7:
-                    System.out.println("Terima kasih telah menggunakan layanan kami. Sampai jumpa!");
-                    System.exit(0);
-                    break;
-                default:
-                    System.out.println("Pilihan tidak valid. Silakan pilih antara 1-7.");
-                    break;
-            }
-        } catch (Exception e) {
-            System.out.println("Terjadi kesalahan input: " + e.getMessage());
         }
-    scanner.close(); 
+    }
+
+    // Method untuk menutup scanner ketika aplikasi selesai
+    public void closeScanner() {
+        if (scanner != null) {
+            scanner.close();
+        }
     }
 }
